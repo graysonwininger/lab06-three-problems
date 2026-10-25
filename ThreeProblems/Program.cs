@@ -17,7 +17,7 @@ int choice = 0;
 //Displays Menu
 Console.WriteLine("=== CSCI 1250 Lab 06 ===" + "\n1. The Grade Checker" + "\n2. The Dice Table" + "\n3. The Score Report" + "\n4. All three" + "\n5. Quit" + "\nChoose 1 through 5: 7" + "\nChoose a number from 1 to 5." + "\nChoose 1 through 5: 3");
 choice = 0;
-Convert.ToInt32(Console.ReadLine());
+choice = Convert.ToInt32(Console.ReadLine());
 
 if (choice == 1 || choice == 4)
 {
@@ -115,5 +115,45 @@ do
 if (choice == 3 || choice == 4)
 {
 //Exercise 3
+//displays exercise 3 message
+Console.WriteLine("=== Exercise 3: The Score Report ===");
+//declares needed variables and the array
+int total = 0;
+int highest = 0;
+int passing = 0;
+int[] scores = new int[5];
 
+//for: The array index is required to store each entry and number into the prompt
+for (int i = 0; i < scores.Length; i++)
+    {
+        //prompts user for scores
+        Console.WriteLine("Enter score " + (i + 1) + ": ");
+    scores[i] = Convert.ToInt32(Console.ReadLine());
+    }
+    //displays scores
+    Console.WriteLine("Score 1: " + scores[0] + "\nScore 2: "+ scores[1] + "\nScore 3: " + scores[2] + "\nScore 4: " + scores[3] + "\nScore 5: " + scores[4]);
+
+//foreach: Every score has to be used, but the array position isn't needed
+    foreach(int score in scores)
+{
+    //calculates total
+    total = scores[0] + scores[1] + scores[2] + scores[3] + scores[4];
+    //determines highest score
+    if (score > highest)
+    {
+        highest = score;
+    }
+    //determines if a score is passing and counts how many are passing
+    if (score >= 60)
+    {
+        passing++;
+    }
+}
+//displays scores entered, total, average, highest, and amount of passing 
+double average = Convert.ToDouble(total) / scores.Length;
+Console.WriteLine("Scores entered: " + scores.Length);
+Console.WriteLine("Total: " + total);
+Console.WriteLine("Average: " + average.ToString("F1"));
+Console.WriteLine("Highest: " + highest);
+Console.WriteLine("Passing: " + passing + " of " + scores.Length);
 }
