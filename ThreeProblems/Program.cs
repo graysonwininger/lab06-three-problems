@@ -9,7 +9,9 @@
 */
 
 //to create random numbers 
-Random rng = new Random();
+using System.Formats.Asn1;
+using System.Runtime.CompilerServices;
+Random rng = new Random(4000);
 
 int choice = 0;
 //Displays Menu
@@ -19,8 +21,9 @@ Convert.ToInt32(Console.ReadLine());
 
 if (choice == 1 || choice == 4)
 {
-// Exercise 1
-
+//Exercise 1
+//displays exercise 1 message
+Console.WriteLine("=== Exercise 1: The Grade Checker ===");
 //declares and sets score to initial number
 int score = -1;
 //declares the varialbe named grade
@@ -30,13 +33,14 @@ while(score < 0 || score > 100)
     {
         //prompts for score
         Console.WriteLine("Enter a score between 0 and 100");
-        Convert.ToInt32(Console.ReadLine());
+        score = Convert.ToInt32(Console.ReadLine());
         //repeats prompt if given invalid number
         if(score < 0 || score > 100)
         {
             Console.WriteLine("A score must be between 0 and 100");
         }
-        Console.WriteLine("Socre: " + score);
+    }
+        Console.WriteLine("Score: " + score);
         //determines grade based on user input
         if(score >= 90)
         {
@@ -63,14 +67,53 @@ while(score < 0 || score > 100)
         }
         //displays grade
         Console.WriteLine(score + " earns a " + grade);
-    }
+    
 }
 if (choice == 2 || choice == 4)
 {
-// Exercise 2
+//Exercise 2
+//displays exercise 2 message
+Console.WriteLine("=== Exercise 2: The Dice Table ===");
+//declares variables rolls and wins and sets them to a default, also declares the variable wins
+int rolls = 0;
+int wins = 0;
+char answer;
+//do while: At least one roll must occur before asking whether the user wants to roll again
+do
+    {
+        int die1 = rng.Next(1, 7);
+        int die2 = rng.Next(1, 7);
+        rolls++;
+        int total = die1 + die2;
 
+        Console.Write("Roll " + rolls + ": " + die1 + " and " + die2 + ", total " + total + ".");
+
+        if(die1 == 1 && die2 == 1)
+        {
+            Console.WriteLine(" Snake eyes.");
+        }
+
+        else if(die1 == die2)
+        {
+            Console.WriteLine(" Doubles!");
+        }
+
+        else if(total == 7 || total == 11)
+        {
+            wins++;
+            Console.WriteLine(" A winner");
+        }
+        else
+        {
+        Console.WriteLine();
+        }
+        Console.WriteLine("Roll again? (y/n):");
+        answer = Convert.ToChar(Console.ReadLine());
+    } while(answer == 'y');
+    Console.WriteLine("You rolled " + rolls + " times and won " + wins + ".");
 }
 if (choice == 3 || choice == 4)
 {
-// Exercise 3
+//Exercise 3
+
 }
