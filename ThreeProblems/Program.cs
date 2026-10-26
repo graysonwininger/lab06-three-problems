@@ -25,6 +25,11 @@ do
         //reprompts user because of invalid input
          Console.Write("Choose 1 through 5: ");
         choice = Convert.ToInt32(Console.ReadLine());
+
+        if (choice < 1 || choice > 5)
+    {
+        Console.WriteLine("Choose a number from 1 to 5.");
+    }
     }
     
 
@@ -42,15 +47,14 @@ char grade;
 while(score < 0 || score > 100)
     {
         //prompts for score
-        Console.WriteLine("Enter a score between 0 and 100");
+        Console.Write("Score: ");
         score = Convert.ToInt32(Console.ReadLine());
         //repeats prompt if given invalid number
         if(score < 0 || score > 100)
         {
-            Console.WriteLine("A score must be between 0 and 100");
+            Console.WriteLine("A score must be between 0 and 100.");
         }
     }
-        Console.WriteLine("Score: " + score);
         //determines grade based on user input
         if(score >= 90)
         {
