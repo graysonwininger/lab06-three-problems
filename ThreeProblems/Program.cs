@@ -9,21 +9,31 @@
 */
 
 //to create random numbers 
-using System.Formats.Asn1;
-using System.Runtime.CompilerServices;
 Random rng = new Random(4000);
 
+//sets choice to 0
 int choice = 0;
-//Displays Menu
-Console.WriteLine("=== CSCI 1250 Lab 06 ===" + "\n1. The Grade Checker" + "\n2. The Dice Table" + "\n3. The Score Report" + "\n4. All three" + "\n5. Quit" + "\nChoose 1 through 5: 7" + "\nChoose a number from 1 to 5." + "\nChoose 1 through 5: 3");
-choice = 0;
-choice = Convert.ToInt32(Console.ReadLine());
+//dowhile: The menu has to be shown once before the user can choose to quit
+do
+{
+    choice = 0;
+    //displays menu
+    Console.WriteLine("\n=== CSCI 1250 Lab 06 ===" + "\n1. The Grade Checker" + "\n2. The Dice Table" + "\n3. The Score Report" + "\n4. All three" + "\n5. Quit"); 
+    //while: it will execute zero times if the first input is valid, or repeatedly until the input is valid
+    while(choice < 1 || choice > 5)
+    {
+        //reprompts user because of invalid input
+         Console.Write("Choose 1 through 5: ");
+        choice = Convert.ToInt32(Console.ReadLine());
+    }
+    
+
 
 if (choice == 1 || choice == 4)
 {
 //Exercise 1
 //displays exercise 1 message
-Console.WriteLine("=== Exercise 1: The Grade Checker ===");
+Console.WriteLine("\n=== Exercise 1: The Grade Checker ===");
 //declares and sets score to initial number
 int score = -1;
 //declares the varialbe named grade
@@ -66,14 +76,14 @@ while(score < 0 || score > 100)
             grade = 'F';
         }
         //displays grade
-        Console.WriteLine(score + " earns a " + grade);
+        Console.WriteLine(score + " earns a " + grade + ".");
     
 }
 if (choice == 2 || choice == 4)
 {
 //Exercise 2
 //displays exercise 2 message
-Console.WriteLine("=== Exercise 2: The Dice Table ===");
+Console.WriteLine("\n=== Exercise 2: The Dice Table ===");
 //declares variables rolls and wins and sets them to a default, also declares the variable wins
 int rolls = 0;
 int wins = 0;
@@ -101,13 +111,13 @@ do
         else if(total == 7 || total == 11)
         {
             wins++;
-            Console.WriteLine(" A winner");
+            Console.WriteLine(" A winner.");
         }
         else
         {
         Console.WriteLine();
         }
-        Console.WriteLine("Roll again? (y/n):");
+        Console.Write("Roll again? (y/n): ");
         answer = Convert.ToChar(Console.ReadLine());
     } while(answer == 'y');
     Console.WriteLine("You rolled " + rolls + " times and won " + wins + ".");
@@ -116,7 +126,7 @@ if (choice == 3 || choice == 4)
 {
 //Exercise 3
 //displays exercise 3 message
-Console.WriteLine("=== Exercise 3: The Score Report ===");
+Console.WriteLine("\n=== Exercise 3: The Score Report ===");
 //declares needed variables and the array
 int total = 0;
 int highest = 0;
@@ -127,17 +137,15 @@ int[] scores = new int[5];
 for (int i = 0; i < scores.Length; i++)
     {
         //prompts user for scores
-        Console.WriteLine("Enter score " + (i + 1) + ": ");
-    scores[i] = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Score " + (i + 1) + ": ");
+scores[i] = Convert.ToInt32(Console.ReadLine());
     }
-    //displays scores
-    Console.WriteLine("Score 1: " + scores[0] + "\nScore 2: "+ scores[1] + "\nScore 3: " + scores[2] + "\nScore 4: " + scores[3] + "\nScore 5: " + scores[4]);
 
 //foreach: Every score has to be used, but the array position isn't needed
     foreach(int score in scores)
 {
     //calculates total
-    total = scores[0] + scores[1] + scores[2] + scores[3] + scores[4];
+    total += score;
     //determines highest score
     if (score > highest)
     {
@@ -151,9 +159,12 @@ for (int i = 0; i < scores.Length; i++)
 }
 //displays scores entered, total, average, highest, and amount of passing 
 double average = Convert.ToDouble(total) / scores.Length;
-Console.WriteLine("Scores entered: " + scores.Length);
+Console.WriteLine("\nScores entered: " + scores.Length);
 Console.WriteLine("Total: " + total);
 Console.WriteLine("Average: " + average.ToString("F1"));
 Console.WriteLine("Highest: " + highest);
 Console.WriteLine("Passing: " + passing + " of " + scores.Length);
 }
+} while(choice != 5);
+//displays goodbye if user input is 5
+Console.WriteLine("Goodbye.");
